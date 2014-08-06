@@ -1,3 +1,36 @@
+$header: #fff;
+$headerBg: #428bca;
+$border: #ddd;
+$break-med: 768px;
+// *
+// Mixins
+// *
+@mixin border-top-radius($radius) {
+   -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+ 	   -moz-border-radius-topleft: $radius;
+      -moz-border-radius-topright: $radius;
+           border-top-left-radius: $radius;
+          border-top-right-radius: $radius;
+}
+// *
+// Main CSS
+// *
+
 body {
 	padding-top: 70px;
+	@media screen and (max-width: $break-med) {
+    padding-top: 120px;
+  }
+}
+
+.nav-header {
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	margin-bottom: -1px;
+	background-color: $headerBg;
+	border: 1px solid $border;
+	color: $header;
+	@include border-top-radius(4px);
 }
