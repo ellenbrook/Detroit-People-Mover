@@ -13,3 +13,6 @@ Route::get('/', function()
 });
 
 Route::resource('admin', 'AdminController');
+Route::get('login', "SessionsController@create");
+Route::get('logout', "SessionsController@destroy");
+Route::resource('sessions', 'SessionsController');
