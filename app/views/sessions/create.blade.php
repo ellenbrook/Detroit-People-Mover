@@ -1,3 +1,5 @@
+@extends('layout.base')
+@section('content')
 <h1>Login</h1>
 
 {{ Form::open(array('route' => 'sessions.store')) }}
@@ -15,3 +17,4 @@
 		</li>
 	</ul>
 {{ Form::close() }}
+@stop
