@@ -9,7 +9,13 @@ Route::when('*', 'csrf', ['post', 'put', 'patch']);
  */
 Route::get('/', ['as' => 'home', function()
 {
-	return View::make('hello');
+	$member = Role::create(['name' => 'member']);
+	$admin = Role::create(['name' => 'administrator']);
+	$owner = Role::create(['name' => 'owner']);
+
+	User::first()->roles()->attach(3);
+
+	return User::first();
 }]);
 
 Route::get('profile', function() { return Auth::user()->email; })->before('auth');
