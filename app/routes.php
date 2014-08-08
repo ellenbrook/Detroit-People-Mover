@@ -9,7 +9,7 @@ Route::when('*', 'csrf', ['post', 'put', 'patch']);
  */
 Route::get('/', function()
 {
-	return View::make('hello');
+	return "Hello";
 });
 
 Route::resource('admin', 'AdminController');
