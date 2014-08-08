@@ -9,10 +9,7 @@ Route::when('*', 'csrf', ['post', 'put', 'patch']);
  */
 Route::get('/', function()
 {
-	if(DB::connection()->getDatabaseName())
-	{
-   			return "conncted sucessfully to database ".DB::connection()->getDatabaseName();
-	}
+	return "Hello";
 });
 
 Route::resource('admin', 'AdminController');
