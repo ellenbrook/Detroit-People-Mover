@@ -9,12 +9,6 @@ Route::when('*', 'csrf', ['post', 'put', 'patch']);
  */
 Route::get('/', ['as' => 'home', function()
 {
-	$member = Role::create(['name' => 'member']);
-	$admin = Role::create(['name' => 'administrator']);
-	$owner = Role::create(['name' => 'owner']);
-
-	User::first()->roles()->attach(3);
-
 	return User::first();
 }]);
 
