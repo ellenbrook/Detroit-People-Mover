@@ -10,7 +10,12 @@
       <a class="navbar-brand" href="#">DPM Administrative Panel</a>
     </div>
       <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Welcome back Eric</a></li>
-          </ul>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome back Eric<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li>{{ HTML::linkAction('SessionsController@destroy', "Logout") }}</li>
+              </ul>
+            </li>
+      </ul>
   </div>
 </nav>
