@@ -37,17 +37,21 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//$user = new User;
- 
-        // $user->first_name = Input::get('first_name');
-        // $user->last_name  = Input::get('last_name');
-        // $user->username   = Input::get('username');
-        // $user->email      = Input::get('email');
-        // $user->password   = Hash::make(Input::get('password'));
- 
-        // $user->save();
- 
-        // return Redirect::to('/user');
+		$validation = Validator::make(Input::all(), ['username' => 'required', 'email' => 'required', 'password' => 'required']);
+
+		if ($validation->fails()) { 
+			
+		}
+
+		$user = new User;
+
+		$user->username = Input::get('username');
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+
+		$user->save();
+
+        return Redirect::to('/user')->with('flash_message', 'User added to the database!');
 	}
 
 
@@ -57,9 +61,9 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function show($username)
 	{
-		//
+		return "Showing ".$username;
 	}
 
 
@@ -69,10 +73,10 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($username)
 	{
-		$user = User::find($id);
- 		return $user;
+		$user = User::find($username);
+ 		return "Editing ".$username;
         //return View::make('user.edit', [ 'user' => $user ]);
 	}
 

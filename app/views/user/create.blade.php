@@ -7,15 +7,16 @@
       </div>
       <div class="col-md-9">
       	<!-- Begin right side panel !-->
-	    @if ($errors->has())
-	        @foreach ($errors->all() as $error)
-	            <div class='bg-danger alert'>{{ $error }}</div>
-	        @endforeach
-	    @endif
-	 
+	      	<!-- Success and error checking -->
+			    @if ($errors->has())
+			        @foreach ($errors->all() as $error)
+			            <div class='bg-danger alert'>{{ $error }}</div>
+			        @endforeach
+			    @endif
+			<!-- End checking -->
 	    <h1><span class="glyphicon glyphicon-user"></span> Add User</h1>
 	 
-	    {{ Form::open(['role' => 'form', 'url' => '/user']) }}
+	    {{ Form::open(['role' => 'form', 'route' => 'user.store']) }}
 	    <div class='form-group'>
 	        {{ Form::label('username', 'First Name') }}
 	        {{ Form::text('username', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}
@@ -24,10 +25,12 @@
 	        {{ Form::label('email', 'Email') }}
 	        {{ Form::text('email', null, ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
 	    </div>
+	    <!--
 	    <div class='form-group'>
 	        {{ Form::label('role', 'Role') }}
 	        {{ Form::text('role') }}
 	    </div>
+		-->
 	    <div class='form-group'>
 	        {{ Form::label('password', 'Password') }}
 	        {{ Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) }}
@@ -37,7 +40,7 @@
 	        {{ Form::password('password_confirmation', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
-	        {{ Form::submit('Login', ['class' => 'btn btn-primary']) }}
+	        {{ Form::submit('Create User', ['class' => 'btn btn-primary']) }}
 	    </div>
 	    {{ Form::close() }}
 	    <!-- End Right Side Panel !-->

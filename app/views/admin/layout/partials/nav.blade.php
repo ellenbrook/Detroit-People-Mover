@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">DPM Administrative Panel</a>
+      {{ link_to('/admin', 'DPM Administrative Panel', ['class' => 'navbar-brand']) }}
     </div>
       <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

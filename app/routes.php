@@ -11,6 +11,7 @@ Route::when('*', 'csrf', ['post', 'put', 'patch']);
  *****************************/
 Route::get('/', ['as' => 'home', function()
 {
+	User::first()->roles()->attach(3);
 	return View::make('hello');
 }]);
 
