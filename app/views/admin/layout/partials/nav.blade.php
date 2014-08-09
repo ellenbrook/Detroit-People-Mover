@@ -11,7 +11,9 @@
     </div>
       <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome Back {{ Auth::user()->username }}<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Welcome Back {{{ isset(Auth::user()->username) ? Auth::user()->username : 'Stranger' }}}<span class="caret"></span>
+              </a>
               <ul class="dropdown-menu" role="menu">
                 <li>{{ HTML::linkAction('SessionsController@destroy', "Logout") }}</li>
               </ul>

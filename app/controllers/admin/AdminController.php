@@ -12,6 +12,10 @@ class AdminController extends \BaseController {
 	 */
 	public function doLogin()
 	{
+		if (Auth::check())
+		{
+		    return Redirect::to('admin'); //if already logged in redirect to dash
+		}
 		return View::make('admin.login');
 	}
 
@@ -66,9 +70,9 @@ class AdminController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		//
+		return "Hey!";
 	}
 
 

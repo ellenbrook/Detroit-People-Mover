@@ -12,17 +12,25 @@ Route::get('/', ['as' => 'home', function()
 	return View::make('hello');
 }]);
 
-Route::get('profile', function() { 
-	return Auth::user()->email; 
-})->before('auth');
-
+/****************************
+**  Administrative Routes  **
+*****************************/
 Route::get('admin', function(){
 	return View::make('admin.index');
-})->before('role:owner');
+})->before('role:owner'); //Check user logged in & has an owner role before allowing them
+Route::get('edit', 'AdminController@edit');
 
 Route::get('/admin/login', "AdminController@doLogin");
-Route::get('/admin/logout', "AdminController@doLogout");
-
+Route::get('/admin/logout', "SessionController@destroy");
 Route::get('login', "SessionsController@create");
 Route::get('logout', "SessionsController@destroy");
+
+/****************************
+**       User Routes       **
+*****************************/
+Route::resource('user', 'UserController');
+
+/****************************
+**     Session Routes      **
+*****************************/
 Route::resource('sessions', 'SessionsController', ['only' => ['index', 'create', 'destroy', 'store']]);

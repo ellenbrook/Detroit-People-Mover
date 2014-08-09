@@ -14,6 +14,14 @@
 
 <div class="list-group">
   <span class="nav-header active">
+    User Options
+  </span>
+  {{ HTML::linkAction('UserController@create', 'Add User', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('UserController@update', 'Edit User', '' , array('class' => 'list-group-item')) }}
+</div>
+
+<div class="list-group">
+  <span class="nav-header active">
     Premium Listing Options
   </span>
   <a href="#" class="list-group-item">Add Premium Member</a>

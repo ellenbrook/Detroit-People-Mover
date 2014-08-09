@@ -25,6 +25,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $fillable = ['email', 'password'];
 
+    /**
+     * Assign user role to user
+     *
+     * @var object
+     */
 	public function roles()
 	{
 		return $this->belongsToMany('Role')->withTimestamps();
