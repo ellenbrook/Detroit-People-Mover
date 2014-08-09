@@ -5,7 +5,16 @@ class AdminController extends \BaseController {
 	{
 
 	}
-	
+	/**
+	 * Display login for admin
+	 *
+	 * @return Response
+	 */
+	public function doLogin()
+	{
+		return View::make('admin.login');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *

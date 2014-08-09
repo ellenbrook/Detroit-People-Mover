@@ -20,7 +20,9 @@ Route::get('admin', function(){
 	return View::make('admin.index');
 })->before('role:owner');
 
-//Route::resource('admin', 'AdminController');
+Route::get('/admin/login', "AdminController@doLogin");
+Route::get('/admin/logout', "AdminController@doLogout");
+
 Route::get('login', "SessionsController@create");
 Route::get('logout', "SessionsController@destroy");
 Route::resource('sessions', 'SessionsController', ['only' => ['index', 'create', 'destroy', 'store']]);

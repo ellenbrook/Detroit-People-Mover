@@ -93,6 +93,6 @@ Route::filter('role', function($route, $request, $role)
 {
 	if (Auth::guest() || ! Auth::user()->hasRole($role))
 	{
-		App::abort(403);
+		return Redirect::to('/admin/login');
 	}
 });
