@@ -66,5 +66,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->roles()->detach($role);
     }
 
-
+    public function printHello() {
+        return "Hello";
+    }
 }

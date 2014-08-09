@@ -1,12 +1,14 @@
 <?php
-/*
- * Protect against cross-site scripts for the following methods
- */
+/****************************
+ * Protect against cross-site 
+ * scripts for the 
+ * following methods
+ *****************************/
 Route::when('*', 'csrf', ['post', 'put', 'patch']);
 
-/*
+/****************************
  * Index Route
- */
+ *****************************/
 Route::get('/', ['as' => 'home', function()
 {
 	return View::make('hello');
@@ -15,15 +17,12 @@ Route::get('/', ['as' => 'home', function()
 /****************************
 **  Administrative Routes  **
 *****************************/
-Route::get('admin', function(){
-	return View::make('admin.index');
-})->before('role:owner'); //Check user logged in & has an owner role before allowing them
-Route::get('edit', 'AdminController@edit');
+//Check user logged in & has an owner role before allowing them
+Route::get('admin', 'AdminController@index'); 
 
+//Route Login and Logout to the session controller
 Route::get('/admin/login', "AdminController@doLogin");
 Route::get('/admin/logout', "SessionController@destroy");
-Route::get('login', "SessionsController@create");
-Route::get('logout', "SessionsController@destroy");
 
 /****************************
 **       User Routes       **
@@ -33,4 +32,6 @@ Route::resource('user', 'UserController');
 /****************************
 **     Session Routes      **
 *****************************/
+Route::get('login', "SessionsController@create");
+Route::get('logout', "SessionsController@destroy");
 Route::resource('sessions', 'SessionsController', ['only' => ['index', 'create', 'destroy', 'store']]);
