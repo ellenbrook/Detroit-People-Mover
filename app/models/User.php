@@ -74,10 +74,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->roles()->detach($role);
     }
 
-    public function printHello() {
-        return "Hello";
-    }
-
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);

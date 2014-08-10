@@ -30,11 +30,7 @@
 	        {{ Form::select('role', $roles , $currentRole->id , ['class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
-	        {{ Form::label('password', 'New Password') }}
-	        {{ Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) }}
-	    </div>
-	    <div class='form-group'>
-	        {{ Form::submit('Update User', ['class' => 'btn btn-primary']) }}
+	        {{ Form::submit('Edit User', ['class' => 'btn btn-primary']) }}
 	    </div>
 	    {{ Form::close() }}
 	    <!-- End Right Side Panel !-->

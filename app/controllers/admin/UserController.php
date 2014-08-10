@@ -108,10 +108,10 @@ class UserController extends \BaseController {
 	public function update($id)
 	{
 		$user = $this->user->findOrFail($id);
-
-		$user->fill(Input::all());
+		$user->removeRole($user->roles->first()->id); //remove existing role
+		$user->fill(Input::except('password'));
 		$user->assignRole(Input::get('role'));
-		
+
 		$user->save();
 
 		return Redirect::to('/user')->with('flash_message', 'User has been updated!');
