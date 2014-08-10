@@ -20,7 +20,6 @@ Route::get('/', ['as' => 'home', function()
 *****************************/
 //Check user logged in & has an owner role before allowing them
 Route::get('admin', 'AdminController@index'); 
-
 //Route Login and Logout to the session controller
 Route::get('/admin/login', "AdminController@doLogin");
 Route::get('/admin/logout', "SessionController@destroy");
