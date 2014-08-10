@@ -14,20 +14,20 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->
-	    <h1><span class="glyphicon glyphicon-user"></span> Add User</h1>
+	    <h1><span class="glyphicon glyphicon-user"></span> Edit User {{ $user->username }}</h1>
 	 
-	    {{ Form::open(['role' => 'form', 'route' => 'user.store']) }}
+	    {{ Form::open(['role' => 'form', 'route' => 'user.update']) }}
 	    <div class='form-group'>
 	        {{ Form::label('username', 'First Name') }}
-	        {{ Form::text('username', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}
+	        {{ Form::text('username', Input::old('name', $user->username), ['placeholder' => 'First Name', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('email', 'Email') }}
-	        {{ Form::text('email', null, ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
+	        {{ Form::text('email', Input::old('email', $user->email), ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('role', 'Role') }}
-	        {{ Form::select('role', $roles, "member", ['class' => 'form-control']) }}
+	        {{ Form::select('role', $roles , Input::old('role', $user->role), ['class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('password', 'Password') }}

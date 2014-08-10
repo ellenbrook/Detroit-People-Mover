@@ -1,9 +1,13 @@
 <?php
 
 class UserController extends \BaseController {
-	public function __construct()
+
+	protected $user;
+
+	public function __construct(User $user)
     {
         $this->beforeFilter('role:owner');
+        $this->user = $user;
     }
 	/**
 	 * Display a listing of the resource.
@@ -12,9 +16,10 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$users = $this->user->with('roles')->get();
+		$role = "role";
 
-		return View::make('user.index', ['users' => $users]);
+		return View::make('user.index', ['users' => $users, 'role' => $role]);
 	}
 
 
@@ -26,7 +31,14 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		//get all user roles
-		return View::make('user.create');
+		$roledata = $this->user->getRoles();
+
+		//loop through and assign a key value pair
+		foreach ($roledata as $key => $value)
+		{
+			$roles[$value->id] = $value->name;
+		} 
+		return View::make('user.create')->with('roles', $roles);
 	}
 
 
@@ -37,19 +49,14 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validation = Validator::make(Input::all(), ['username' => 'required', 'email' => 'required', 'password' => 'required']);
+		$input = Input::all();
 
-		if ($validation->fails()) { 
-			
+		if (! $this->user->fill($input)->isValid()) 
+		{ 
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
-
-		$user = new User;
-
-		$user->username = Input::get('username');
-		$user->email = Input::get('email');
-		$user->password = Hash::make(Input::get('password'));
-
-		$user->save();
+		//if the user input is  valid then save it and redirect
+		$this->user->save();
 
         return Redirect::to('/user')->with('flash_message', 'User added to the database!');
 	}
@@ -63,6 +70,8 @@ class UserController extends \BaseController {
 	 */
 	public function show($username)
 	{
+		//$user = $this->user->whereUsername($username)->first();
+		// return View::make('user.show', ['user' => $user]);
 		return "Showing ".$username;
 	}
 
@@ -73,11 +82,21 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($username)
+	public function edit($id)
 	{
-		$user = User::find($username);
- 		return "Editing ".$username;
-        //return View::make('user.edit', [ 'user' => $user ]);
+		$user = $this->user->with('roles')->find($id);
+		//get all user roles
+
+		$role = "owner";
+
+		$roledata = $this->user->getRoles();
+		//loop through and assign a key value pair
+		foreach ($roledata as $key => $value)
+		{
+			$roles[$value->id] = $value->name;
+		} 
+
+        return View::make('user.edit', ['user' => $user, 'role' => $role, 'roles' => $roles]);
 	}
 
 
@@ -102,8 +121,7 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		User::destroy($id);
- 		return "Destroying";
-        //return Redirect::to('/user');
+        return Redirect::to('/user')->with('flash_message', 'User added to the database!');
 	}
 
 

@@ -25,6 +25,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $fillable = ['username' ,'email', 'password'];
 
+    public static $rules = [
+            'username' => 'required', 
+            'email' => 'required', 
+            'password' => 'required'
+    ];
+
+    public $errors;
+
     /**
      * Assign user role to user
      *
@@ -68,5 +76,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function printHello() {
         return "Hello";
+    }
+
+    public function isValid()
+    {
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if ($validation->passes()) return true;
+
+        $this->errors = $validation->messages();
+        return false;
+    }
+
+    public function getRoles() {
+        $roles = DB::table('roles')->get();
+        return $roles;
     }
 }

@@ -33,7 +33,11 @@
 	                    <td>{{ link_to("/user/{$user->username}", $user->username) }}</td>
 	                    <td>{{ $user->email }}</td>
 	                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
-	                    <td>Role</td>
+	                    <td>
+	                    	@foreach($user->roles as $role)
+	                    	{{ $role->name }}
+	                    	@endforeach
+	                    </td>
 	                    <td>
 	                    {{ link_to("/user/{$user->username}/edit/", 'Edit', ['class' => 'btn btn-info pull-left tabular-button']) }}
 	                   	{{ Form::open(['url' => '/user/' . $user->id, 'method' => 'DELETE']) }}
