@@ -14,6 +14,12 @@ $break-med: 768px;
           border-top-right-radius: $radius;
 }
 
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+ 	  -moz-border-topleft: $radius;
+            border-radius: $radius;
+}
+
 @mixin transition ($property, $duration, $type, $delay) {
     -webkit-transition: $property $duration $type $delay;
        -moz-transition: $property $duration $type $delay;
@@ -44,4 +50,8 @@ body {
 
 .tabular-button {
 	margin-right: 1em;
+}
+
+.profile-icon {
+	font-size: 9em;
 }

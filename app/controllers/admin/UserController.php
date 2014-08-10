@@ -72,10 +72,9 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = $this->user->findOrFail($id); //easier method to showing user
-		dd($user);
-		// return View::make('user.show', ['user' => $user]);
-		return "Showing ".$username;
+		$user = $this->user->with('roles')->findOrFail($id); //easier method to showing user
+
+		return View::make('user.show', ['user' => $user]);
 	}
 
 
