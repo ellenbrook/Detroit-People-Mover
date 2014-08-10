@@ -55,8 +55,10 @@ class UserController extends \BaseController {
 		{ 
 			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
-		//if the user input is  valid then save it and redirect
+
+		//if the user input is  valid then save it and assign associated role
 		$this->user->save();
+		$this->user->assignRole(Input::get('role'));
 
         return Redirect::to('/user')->with('flash_message', 'User added to the database!');
 	}
