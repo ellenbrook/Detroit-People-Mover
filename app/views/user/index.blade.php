@@ -30,7 +30,7 @@
 	            <tbody>
 	                @foreach ($users as $user)
 	                <tr>
-	                    <td>{{ link_to("/user/{$user->username}", $user->username) }}</td>
+	                    <td>{{ link_to("/user/{$user->id}", $user->username) }}</td>
 	                    <td>{{ $user->email }}</td>
 	                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
 	                    <td>

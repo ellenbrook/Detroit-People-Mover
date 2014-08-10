@@ -14,27 +14,27 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->
-	    <h1><span class="glyphicon glyphicon-user"></span> Edit User {{ $user->username }}</h1>
+	    <h1><span class="glyphicon glyphicon-user"></span> Edit User {{ $user->username }} ({{ $currentRole->name}})</h1>
 	 
-	    {{ Form::open(['role' => 'form', 'route' => 'user.update']) }}
+	    {{ Form::model($user, ['method'=>'PATCH', 'route' => ['user.update', $user->id]]) }}
 	    <div class='form-group'>
 	        {{ Form::label('username', 'First Name') }}
-	        {{ Form::text('username', Input::old('name', $user->username), ['placeholder' => 'First Name', 'class' => 'form-control']) }}
+	        {{ Form::text('username', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('email', 'Email') }}
-	        {{ Form::text('email', Input::old('email', $user->email), ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
+	        {{ Form::text('email', null , ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('role', 'Role') }}
-	        {{ Form::select('role', $roles , 'administrator' , ['class' => 'form-control']) }}
+	        {{ Form::select('role', $roles , $currentRole->id , ['class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
-	        {{ Form::label('password', 'Password') }}
-	        {{ Form::text('password', null, ['placeholder' => 'Password', 'class' => 'form-control']) }}
+	        {{ Form::label('password', 'New Password') }}
+	        {{ Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
-	        {{ Form::submit('Create User', ['class' => 'btn btn-primary']) }}
+	        {{ Form::submit('Update User', ['class' => 'btn btn-primary']) }}
 	    </div>
 	    {{ Form::close() }}
 	    <!-- End Right Side Panel !-->

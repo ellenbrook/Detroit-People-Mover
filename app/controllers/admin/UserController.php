@@ -68,9 +68,10 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($username)
+	public function show($id)
 	{
-		//$user = $this->user->whereUsername($username)->first();
+		$user = $this->user->findOrFail($id); //easier method to showing user
+		dd($user);
 		// return View::make('user.show', ['user' => $user]);
 		return "Showing ".$username;
 	}
@@ -84,9 +85,8 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$user = $this->user->with('roles')->find($id);
+		$user = $this->user->with('roles')->findOrFail($id);
 		//get all user roles
-
 		$roledata = $this->user->getRoles();
 
 		//loop through and assign a key value pair
@@ -95,7 +95,7 @@ class UserController extends \BaseController {
 			$roles[$value->id] = $value->name;
 		} 
 
-        return View::make('user.edit', ['user' => $user, 'roles' => $roles]);
+        return View::make('user.edit', ['user' => $user, 'roles' => $roles, 'currentRole' => $current = $user->roles->first()]);
 	}
 
 
@@ -107,9 +107,15 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
-	}
+		$user = $this->user->findOrFail($id);
 
+		$user->fill(Input::all());
+		$user->assignRole(Input::get('role'));
+		
+		$user->save();
+
+		return Redirect::to('/user')->with('flash_message', 'User has been updated!');
+	}
 
 	/**
 	 * Remove the specified resource from storage.
