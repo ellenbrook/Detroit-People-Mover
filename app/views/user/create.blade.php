@@ -34,7 +34,11 @@
 		    </div>
 		    <div class='form-group'>
 		        {{ Form::label('password', 'Password') }}
-		        {{ Form::text('password', null, ['placeholder' => 'Password', 'class' => 'form-control']) }}
+		        {{ Form::password('password',  ['placeholder' => 'Password', 'class' => 'form-control']) }}
+		    </div>
+		   	<div class='form-group'>
+		        {{ Form::label('password_confirmation', 'Password Confirm') }}
+		        {{ Form::password('password_confirmation',  ['placeholder' => 'Password Confirm', 'class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>
 		        {{ Form::submit('Create User', ['class' => 'btn btn-primary']) }}
