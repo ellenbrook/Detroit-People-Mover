@@ -27,7 +27,7 @@
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('role', 'Role') }}
-	        {{ Form::select('role', $roles , Input::old('role', $user->role), ['class' => 'form-control']) }}
+	        {{ Form::select('role', $roles , 'administrator' , ['class' => 'form-control']) }}
 	    </div>
 	    <div class='form-group'>
 	        {{ Form::label('password', 'Password') }}

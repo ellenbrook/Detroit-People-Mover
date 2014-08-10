@@ -87,16 +87,15 @@ class UserController extends \BaseController {
 		$user = $this->user->with('roles')->find($id);
 		//get all user roles
 
-		$role = "owner";
-
 		$roledata = $this->user->getRoles();
+
 		//loop through and assign a key value pair
 		foreach ($roledata as $key => $value)
 		{
 			$roles[$value->id] = $value->name;
 		} 
 
-        return View::make('user.edit', ['user' => $user, 'role' => $role, 'roles' => $roles]);
+        return View::make('user.edit', ['user' => $user, 'roles' => $roles]);
 	}
 
 
