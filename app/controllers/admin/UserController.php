@@ -115,7 +115,7 @@ class UserController extends \BaseController {
 	{
 		$user = $this->user->findOrFail($id);
 		$user->removeRole($user->roles->first()->id); //remove existing role
-		// $user->fill(Input::except('password'));
+		$user->fill(Input::except('password'));
 		$user->assignRole(Input::get('role'));
 
 		$user->save();
