@@ -37,7 +37,7 @@
                       </tr>
                       <tr>
                         <th>Business</th>
-                        <td>Need to code</td>
+                        <td>{{ $user->business_name }}</td>
                       </tr>
                       <tr>
                         <th>Email</th>
@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                         <th>Phone Number</th>
-                        <td>Need to code</td>   
+                        <td>{{ $user->area_code }}-{{ $user->phone_number }}</td>   
                       </tr>
                      <tr>
                      	<th></th>

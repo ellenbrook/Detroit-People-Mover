@@ -36,7 +36,7 @@ class UserController extends \BaseController {
 		foreach ($roledata as $key => $value)
 		{
 			$roles[$value->id] = $value->name;
-		} 
+		}
 		return View::make('user.create')->with('roles', $roles);
 	}
 
@@ -57,7 +57,11 @@ class UserController extends \BaseController {
 
 		//unset the password confirm
 		unset($this->user->password_confirmation);
-		//if the user input is  valid then save it and assign associated role
+
+		//hash the password prior to input
+		$this->user->password = Hash::make(Input::get('password'));
+
+		//if the user input is valid then save it and assign associated role
 		$this->user->save();
 		$this->user->assignRole(Input::get('role'));
 
@@ -111,7 +115,7 @@ class UserController extends \BaseController {
 	{
 		$user = $this->user->findOrFail($id);
 		$user->removeRole($user->roles->first()->id); //remove existing role
-		$user->fill(Input::except('password'));
+		// $user->fill(Input::except('password'));
 		$user->assignRole(Input::get('role'));
 
 		$user->save();
@@ -128,7 +132,7 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		User::destroy($id);
-        return Redirect::to('/user')->with('flash_message', 'User added to the database!');
+        return Redirect::to('/user')->with('flash_message', 'User removed to the database!');
 	}
 
 

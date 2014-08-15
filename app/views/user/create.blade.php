@@ -32,6 +32,22 @@
 		        {{ Form::label('role', 'Role') }}
 		        {{ Form::select('role', $roles, "member", ['class' => 'form-control']) }}
 		    </div>
+		    <div class="col-md-3">
+			    <div class='form-group'>
+			        {{ Form::label('area_code', 'Area Code') }}
+			        {{ Form::text('area_code', null, ['placeholder' => 'Area Code', 'class' => 'form-control']) }}
+			    </div>
+			</div>
+		    <div class="col-md-9">
+			    <div class='form-group'>
+			        {{ Form::label('phone_number', 'Phone Number') }}
+			        {{ Form::text('phone_number', null, ['placeholder' => 'Phone Number', 'class' => 'form-control']) }}
+			    </div>
+			</div>
+		    <div class='form-group'>
+		        {{ Form::label('business_name', 'Business Name') }}
+		        {{ Form::text('business_name', null, ['placeholder' => 'Business Name', 'class' => 'form-control']) }}
+		    </div>
 		    <div class='form-group'>
 		        {{ Form::label('password', 'Password') }}
 		        {{ Form::password('password',  ['placeholder' => 'Password', 'class' => 'form-control']) }}
