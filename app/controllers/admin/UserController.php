@@ -17,9 +17,8 @@ class UserController extends \BaseController {
 	public function index()
 	{
 		$users = $this->user->with('roles')->get();
-		$role = "role";
 
-		return View::make('user.index', ['users' => $users, 'role' => $role]);
+		return View::make('user.index', ['users' => $users]);
 	}
 
 
