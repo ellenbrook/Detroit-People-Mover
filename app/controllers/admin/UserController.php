@@ -30,7 +30,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//get all user roles
+		//get all user roles to populate the select menu
 		$roledata = $this->user->getRoles();
 
 		//loop through and assign a key value pair
