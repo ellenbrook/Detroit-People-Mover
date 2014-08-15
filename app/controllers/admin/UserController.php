@@ -6,7 +6,7 @@ class UserController extends \BaseController {
 
 	public function __construct(User $user)
     {
-        $this->beforeFilter('role:owner');
+        $this->beforeFilter('role:Owner');
         $this->user = $user;
     }
 	/**

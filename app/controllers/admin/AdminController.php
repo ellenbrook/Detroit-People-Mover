@@ -3,7 +3,7 @@
 class AdminController extends \BaseController {
 	public function __construct()
     {
-        $this->beforeFilter('role:owner', array('except' => array('doLogin')));
+        $this->beforeFilter('role:Owner', array('except' => array('doLogin')));
     }
 	/**
 	 * Display login for admin
