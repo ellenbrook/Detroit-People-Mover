@@ -34,7 +34,7 @@
 		            <tbody>
 		                @foreach ($users as $user)
 		                <tr>
-		                    <td>{{ link_to("/user/{$user->id}", $user->username) }}</td>
+		                    <td>{{ link_to("admin/user/{$user->id}", $user->username) }}</td>
 		                    <td>{{ $user->email }}</td>
 		                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
 		                    <td>
@@ -49,7 +49,7 @@
 		                @endforeach
 		            </tbody>
 		        </table>
-		        <a href="/user/create" class="btn btn-success">Add User</a>
+		        {{ link_to_route('admin.user.create', 'Add User', null, ['class' => 'btn btn-success']) }}
 		        <!-- End Right Side Panel !-->
 		</div>
 		</div> <!-- end panel wrapper -->

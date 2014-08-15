@@ -19,7 +19,7 @@
 				        @endforeach
 				    @endif
 				<!-- End checking -->
-		    {{ Form::model($user, ['method'=>'PATCH', 'route' => ['user.update', $user->id]]) }}
+		    {{ Form::model($user, ['method'=>'PATCH', 'route' => ['admin.user.update', $user->id]]) }}
 		    <div class='form-group'>
 		        {{ Form::label('username', 'First Name') }}
 		        {{ Form::text('username', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}

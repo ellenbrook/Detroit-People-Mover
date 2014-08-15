@@ -19,7 +19,7 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->		 
-		    {{ Form::open(['role' => 'form', 'route' => 'user.store']) }}
+		    {{ Form::open(['role' => 'form', 'route' => 'admin.user.store']) }}
 		    <div class='form-group'>
 		        {{ Form::label('username', 'First Name') }}
 		        {{ Form::text('username', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}

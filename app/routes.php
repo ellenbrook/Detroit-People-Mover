@@ -15,6 +15,18 @@ Route::get('/', ['as' => 'home', function()
 	return View::make('hello');
 }]);
 
+Route::group(['prefix' => 'admin'], function() {
+	/****************************
+	**       User Routes       **
+	*****************************/
+	Route::resource('user', 'UserController');
+
+	/****************************
+	**      Transit Routes     **
+	*****************************/
+	Route::resource('transit', 'TransitController');
+});
+
 /****************************
 **  Administrative Routes  **
 *****************************/
@@ -24,10 +36,6 @@ Route::get('admin', 'AdminController@index');
 Route::get('/admin/login', "AdminController@doLogin");
 Route::get('/admin/logout', "SessionController@destroy");
 
-/****************************
-**       User Routes       **
-*****************************/
-Route::resource('user', 'UserController');
 
 /****************************
 **     Session Routes      **

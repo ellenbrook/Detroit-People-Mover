@@ -65,7 +65,7 @@ class UserController extends \BaseController {
 		$this->user->save();
 		$this->user->assignRole(Input::get('role'));
 
-        return Redirect::to('/user')->with('flash_message', 'User added to the database!');
+        return Redirect::to('admin/user')->with('flash_message', 'User added to the database!');
 	}
 
 
@@ -120,7 +120,7 @@ class UserController extends \BaseController {
 
 		$user->save();
 
-		return Redirect::to('/user')->with('flash_message', 'User has been updated!');
+		return Redirect::to('admin/user')->with('flash_message', 'User has been updated!');
 	}
 
 	/**
@@ -132,7 +132,7 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		User::destroy($id);
-        return Redirect::to('/user')->with('flash_message', 'User removed to the database!');
+        return Redirect::to('admin/user')->with('flash_message', 'User removed to the database!');
 	}
 
 
