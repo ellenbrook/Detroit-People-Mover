@@ -56,6 +56,8 @@ class UserController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 
+		//unset the password confirm
+		unset($this->user->password_confirmation);
 		//if the user input is  valid then save it and assign associated role
 		$this->user->save();
 		$this->user->assignRole(Input::get('role'));
