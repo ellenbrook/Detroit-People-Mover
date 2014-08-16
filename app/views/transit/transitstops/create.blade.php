@@ -8,7 +8,7 @@
       <div class="col-md-9">
       	<div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Add Transit Line</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Add Transit Stop</h3>
             </div>
         <div class="panel-body">
       	<!-- Begin right side panel !-->
@@ -19,13 +19,17 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->		 
-		    {{ Form::open(['role' => 'form', 'route' => 'admin.transit.store']) }}
+		    {{ Form::open(['role' => 'form', 'route' => 'admin.transitstops.store']) }}
 		    <div class='form-group'>
-		        {{ Form::label('name', 'Type of Transit Line') }}
-		        {{ Form::text('name', null, ['placeholder' => 'e.g., "Monorail" or "High Speed Bus"', 'class' => 'form-control']) }}
+		        {{ Form::label('name', 'Transit Line Name') }}
+		        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>
-		        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}
+		        {{ Form::label('name', 'Transit Stop Name') }}
+		        {{ Form::text('name', null, ['placeholder' => 'e.g., "Grand Circus Park" or "Fort/Cass"', 'class' => 'form-control']) }}
+		    </div>
+		    <div class='form-group'>
+		        {{ Form::submit('Add Transit Stop', ['class' => 'btn btn-primary']) }}
 		    </div>
 		    {{ Form::close() }}
 		    <!-- End Right Side Panel !-->

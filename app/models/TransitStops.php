@@ -10,5 +10,8 @@ class TransitStops extends \Eloquent {
     public function attractions() {
         return $this->hasMany('Attractions');
     }
-
+    public function getTransitLines() {
+        $transit_lines = DB::table('transit_lines')->get();
+        return $transit_lines;
+    }
 }

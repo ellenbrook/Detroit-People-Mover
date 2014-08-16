@@ -12,6 +12,13 @@ class Transit extends \Eloquent {
 
     public $errors;
 
+
+    //This transit line has many stops
+    public function transitLine()
+    {
+        return $this->hasMany('TransitLine')->withTimestamps();
+    }
+
     public function isValid()
     {
         $validation = Validator::make($this->attributes, static::$rules);
@@ -20,34 +27,5 @@ class Transit extends \Eloquent {
 
         $this->errors = $validation->messages();
         return false;
-    }
-
-    //This transit line has many stops
-    public function stops()
-    {
-        return $this->hasMany('Stops')->withTimestamps();
-    }
-
-    //Check to see if a specific stop belongs to this transit line
-    public function hasStop($name)
-    {
-        foreach ($this->stops as $stop)
-        {
-            if ($stop->name == $name) return true;
-        }
-
-        return false;
-    }
-
-    //Assign a stop to this transit line
-    public function assignStop($name)
-    {
-        return $this->stops()->attach($name);
-    }
-    
-    //remove the stop from the transit line
-    public function removeStop($name)
-    {
-        return $this->stops()->detach($name);
     }
 }

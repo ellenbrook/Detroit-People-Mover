@@ -22,9 +22,14 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::resource('user', 'UserController');
 
 	/****************************
-	**      Transit Line     **
+	**          Transit        **
 	*****************************/
 	Route::resource('transit', 'TransitController');
+
+	/****************************
+	**      Transit Line     **
+	*****************************/
+	Route::resource('transitline', 'TransitLineController');
 
 	/****************************
 	**      Transit Stops     **

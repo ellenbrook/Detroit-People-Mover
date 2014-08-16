@@ -9,7 +9,7 @@
       	<!-- Begin right side panel !-->
       	<div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Type Administration</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Line Administration</h3>
             </div>
         <div class="panel-body">
 					<!-- Display success alert if posted -->
@@ -23,8 +23,8 @@
 		        <table class="table table-bordered table-striped">
 		            <thead>
 		                <tr>
-		                    <th class="col-sm-4">Transit Line Type</th>
-		                    <th class="col-sm-4">Lines</th>
+		                    <th class="col-sm-4">Transit Line</th>
+		                    <th class="col-sm-4">Stops</th>
 		                    <th class="col-sm-4">Options</th>
 		                </tr>
 		            </thead>

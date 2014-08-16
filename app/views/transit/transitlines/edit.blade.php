@@ -8,7 +8,7 @@
       <div class="col-md-9">
       	<div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Add Transit Line</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Edit Transit Line</h3>
             </div>
         <div class="panel-body">
       	<!-- Begin right side panel !-->
@@ -19,10 +19,14 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->		 
-		    {{ Form::open(['role' => 'form', 'route' => 'admin.transit.store']) }}
+		    {{ Form::model($transitline, ['method'=>'PATCH', 'route' => ['admin.transitline.update', $transitline->id]]) }}
 		    <div class='form-group'>
-		        {{ Form::label('name', 'Type of Transit Line') }}
-		        {{ Form::text('name', null, ['placeholder' => 'e.g., "Monorail" or "High Speed Bus"', 'class' => 'form-control']) }}
+		        {{ Form::label('transit_id', 'Type of Transit Line') }}
+		        {{ Form::select('transit_id', $types, '', ['class' => 'form-control']) }}
+		    </div>
+		    <div class='form-group'>
+		        {{ Form::label('name', 'Transit Line Name') }}
+		        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>
 		        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}

@@ -2,9 +2,18 @@
   <span class="nav-header active">
     Transit Options
   </span>
-  {{ HTML::linkAction('TransitController@create', 'Add Transit Line', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitController@index', 'All Transit Lines', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitController@create', 'Add Transit Type', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitController@index', 'All Transit Types', '' , array('class' => 'list-group-item')) }}
 </div>
+
+<div class="list-group">
+  <span class="nav-header active">
+    Transit Line Options
+  </span>
+  {{ HTML::linkAction('TransitLineController@create', 'Add Transit Line', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitLineController@index', 'All Transit Lines', '' , array('class' => 'list-group-item')) }}
+</div>
+
 <div class="list-group">
   <span class="nav-header active">
     Transit Stop Options
