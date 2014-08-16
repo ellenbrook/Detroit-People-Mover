@@ -1,9 +1,9 @@
 <div class="list-group">
   <span class="nav-header active">
-    People Mover Options
+    Transit Options
   </span>
-  <a href="#" class="list-group-item">Add Transit Line</a>
-  <a href="#" class="list-group-item">View Transit Lines</a>
+  {{ HTML::linkAction('TransitController@create', 'Add Transit Line', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitController@index', 'All Transit Lines', '' , array('class' => 'list-group-item')) }}
   <a href="#" class="list-group-item">Add Listing</a>
   <a href="#" class="list-group-item">Edit Listing</a>
   <a href="#" class="list-group-item">Show All Listings</a>

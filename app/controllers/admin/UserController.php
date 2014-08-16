@@ -132,7 +132,7 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		User::destroy($id);
-        return Redirect::to('admin/user')->with('flash_message', 'User removed to the database!');
+        return Redirect::to('admin/user')->with('flash_message', 'User removed from the database!');
 	}
 
 
