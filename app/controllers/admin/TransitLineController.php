@@ -18,7 +18,14 @@ class TransitLineController extends \BaseController {
 	{
 		$transitlines = $this->transitline->get();
 
-		//get all user roles to populate the select menu
+		//Loop through all of the transits and get the number of transit lines. Then assign to $count variable.
+		foreach ($transitlines as $line)
+		{
+			$name[] = $this->transitline->pivot;
+		}
+		dd($name);
+
+		//get all user transit lines to populate the select menu
 		$typesdata = $this->transitline->getTypesOfTransit();
 
 		//loop through and assign a key value pair
