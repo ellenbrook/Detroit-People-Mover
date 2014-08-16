@@ -32,7 +32,7 @@
 		            <tbody>
 		                @foreach ($transitlines as $transitline)
 		                <tr>
-		                    <td>{{ link_to("admin/transitlines/{$transitline->id}", $transitline->name) }}</td>
+		                    <td>{{ link_to("admin/transitline/{$transitline->id}", $transitline->name) }}</td>
 		                    <td>
 		                    	Thing
 		                    </td>
