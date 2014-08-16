@@ -3,29 +3,14 @@
     Transit Options
   </span>
   {{ HTML::linkAction('TransitController@index', 'Transit Types', '' , array('class' => 'list-group-item')) }}
-</div>
-
-<div class="list-group">
-  <span class="nav-header active">
-    Transit Line Options
-  </span>
-  {{ HTML::linkAction('TransitLineController@create', 'Add Transit Line', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitLineController@index', 'All Transit Lines', '' , array('class' => 'list-group-item')) }}
-</div>
-
-<div class="list-group">
-  <span class="nav-header active">
-    Transit Stop Options
-  </span>
-  {{ HTML::linkAction('TransitStopsController@create', 'Add Transit Stop', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitStopsController@index', 'All Transit Stops', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitLineController@index', 'Transit Lines', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitStopsController@index', 'Transit Stops', '' , array('class' => 'list-group-item')) }}
 </div>
 
 <div class="list-group">
   <span class="nav-header active">
     Attraction Options
   </span>
-  <a href="#" class="list-group-item">Add Attraction</a>
   <a href="#" class="list-group-item">All Attractions</a>
   <a href="#" class="list-group-item">Add Tags</a>
   <a href="#" class="list-group-item">All Tags</a>
