@@ -16,13 +16,8 @@ class TransitController extends \BaseController {
 	public function index()
 	{
 		$transits = $this->transit->get();
-		//Loop through all of the transits and get the number of transit lines. Then assign to $count variable.
-		foreach ($transits as $transit)
-		{
-			$count[] = TransitLine::where('transit_id', '=', $transit->id)->count();
-		}
 
-		return View::make('transit.index', ['transits' => $transits])->withCount($count);
+		return View::make('transit.index', ['transits' => $transits]);
 
 	}
 

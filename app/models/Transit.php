@@ -16,7 +16,7 @@ class Transit extends \Eloquent {
     //This transit line has many stops
     public function transitLine()
     {
-        return $this->hasMany('TransitLine');
+        return $this->hasMany('TransitLine')->withTimestamps();
     }
 
     public function isValid()
