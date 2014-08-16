@@ -43,7 +43,20 @@
 		                @endforeach
 		            </tbody>
 		        </table>
-		        {{ link_to_route('admin.transit.create', 'Add Transit Line', null, ['class' => 'btn btn-success']) }}
+		        <div class="add-form">
+				    {{ Form::open(['role' => 'form', 'route' => 'admin.transit.store']) }}
+				    <div class='form-group'>
+				        {{ Form::label('name', 'Type of Transit Line') }}
+				        {{ Form::text('name', null, ['placeholder' => 'e.g., "Monorail" or "High Speed Bus"', 'class' => 'form-control']) }}
+				    </div>
+				    <div class='form-group'>
+				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}
+				    </div>
+				    {{ Form::close() }}
+				</div>
+
+		        <a href="#" class="btn btn-success show-add-form">Add Transit Line</a>
+		        <a href="#" class="btn pull-right hide-add-form">hide</a>
 		        <!-- End Right Side Panel !-->
 		</div>
 		</div> <!-- end panel wrapper -->

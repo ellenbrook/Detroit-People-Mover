@@ -2,8 +2,7 @@
   <span class="nav-header active">
     Transit Options
   </span>
-  {{ HTML::linkAction('TransitController@create', 'Add Transit Type', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitController@index', 'All Transit Types', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitController@index', 'Transit Types', '' , array('class' => 'list-group-item')) }}
 </div>
 
 <div class="list-group">
