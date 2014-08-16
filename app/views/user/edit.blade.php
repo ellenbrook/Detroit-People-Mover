@@ -57,7 +57,7 @@
 		        {{ Form::password('password_confirmation',  ['placeholder' => 'Password Confirm', 'class' => 'form-control']) }}
 		    </div>
 		     <div class='form-group'>
-		        {{ Form::submit('Edit User', ['class' => 'btn btn-primary']) }}
+		        {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
 		    </div>
 		    {{ Form::close() }}
 		    <!-- End Right Side Panel !-->

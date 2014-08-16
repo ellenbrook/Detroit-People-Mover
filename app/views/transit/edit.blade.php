@@ -25,7 +25,7 @@
 		        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>
-		        {{ Form::submit('Update Transit Line', ['class' => 'btn btn-primary']) }}
+		        {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
 		    </div>
 		    {{ Form::close() }}
 		    <!-- End Right Side Panel !-->

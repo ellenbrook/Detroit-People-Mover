@@ -2,9 +2,9 @@
   <span class="nav-header active">
     Transit Options
   </span>
-  {{ HTML::linkAction('TransitController@index', 'Transit Types', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitLineController@index', 'Transit Lines', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitStopsController@index', 'Transit Stops', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitController@index', 'Types', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitLineController@index', 'Lines', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitStopsController@index', 'Stops', '' , array('class' => 'list-group-item')) }}
 </div>
 
 <div class="list-group">
