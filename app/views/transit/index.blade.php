@@ -34,7 +34,7 @@
 		                <tr>
 		                    <td>{{ link_to("admin/transit/{$transit->id}", $transit->name) }}</td>
 		                    <td>
-		                    	Thing
+		                    	{{ $transit->transitLine()->count() }}
 		                    </td>
 		                    <td>
 		                    	@include('admin.layout.partials.transitbuttons')

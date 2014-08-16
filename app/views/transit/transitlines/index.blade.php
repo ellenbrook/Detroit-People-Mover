@@ -34,7 +34,7 @@
 		                <tr>
 		                    <td>{{ link_to("admin/transitline/{$transitline->id}", $transitline->name) }}</td>
 		                    <td>
-		                    	Thing
+		                    	NUMBER
 		                    </td>
 		                    <td>
 		                    	@include('admin.layout.partials.transitlinebuttons')
