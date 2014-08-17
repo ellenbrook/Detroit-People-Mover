@@ -4,7 +4,7 @@
   </span>
   {{ HTML::linkAction('TransitController@index', 'Types', '' , array('class' => 'list-group-item')) }}
   {{ HTML::linkAction('TransitLineController@index', 'Lines', '' , array('class' => 'list-group-item')) }}
-  {{ HTML::linkAction('TransitStopsController@index', 'Stops', '' , array('class' => 'list-group-item')) }}
+  {{ HTML::linkAction('TransitStopController@index', 'Stops', '' , array('class' => 'list-group-item')) }}
 </div>
 
 <div class="list-group">

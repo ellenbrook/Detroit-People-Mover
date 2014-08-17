@@ -1,6 +1,6 @@
 <?php
 
-class TransitStopsController extends \BaseController {
+class TransitStopController extends \BaseController {
 	protected $transitstop;
 
 	public function __construct(TransitStop $transitstop)
@@ -15,7 +15,13 @@ class TransitStopsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return "hello";
+		$transitstops = $this->transitstop->get(); //Get all stops
+
+		//perform query to get all lines
+
+		//loop through and assign to array
+
+		return View::make('transit.transitstops.index', ['transitstops' => $transitstops]);
 	}
 
 
@@ -26,15 +32,7 @@ class TransitStopsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//get all transit lines to populate the select menu
-		$transitdata = $this->transitstop->getRoles();
-
-		//loop through and assign a key value pair
-		foreach ($transitdata as $key => $value)
-		{
-			$transit[$value->id] = $value->name;
-		}
-
+	    return "create";
 		return View::make('transit.transitstops.create')->with('transit', $transit);
 	}
 

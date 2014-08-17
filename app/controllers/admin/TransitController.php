@@ -15,9 +15,13 @@ class TransitController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transits = $this->transit->get();
+		$transitlines = TransitLine::with('transit')->get();
 
-		return View::make('transit.index', ['transits' => $transits]);
+		foreach ($transitlines as $transitline) {
+			$count = TransitLine::where('transit_id', $transitline->transit->id)->count(); //loop and count the lines
+		}
+
+		return View::make('transit.index', ['transitlines' => $transitlines, 'count' => $count]);
 
 	}
 
@@ -62,9 +66,9 @@ class TransitController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$transit = $this->transit->findOrFail($id); //easier method to showing transit
+		//select the transit line and pull in the information (find or fail?)
 
-		return View::make('transit.show', ['transit' => $transit]);
+		return View::make('transit.show', ['transitline' => $transitline]);
 	}
 
 

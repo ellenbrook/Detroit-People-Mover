@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin'], function() {
 	/****************************
 	**      Transit Stops     **
 	*****************************/
-	Route::resource('transitstops', 'TransitStopsController');
+	Route::resource('transitstop', 'TransitStopController');
 });
 
 /****************************

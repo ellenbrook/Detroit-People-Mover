@@ -1,6 +1,6 @@
 <?php
 
-class TransitStops extends \Eloquent {
+class TransitStop extends \Eloquent {
 	protected $fillable = ['name'];
 
 	public function line() {

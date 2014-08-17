@@ -30,11 +30,11 @@
 		            </thead>
 		 
 		            <tbody>
-		                @foreach ($transits as $transit)
+		                @foreach ($transitlines as $transitline)
 		                <tr>
-		                    <td>{{ link_to("admin/transit/{$transit->id}", $transit->name) }}</td>
+		                    <td>{{ link_to("admin/transit/{$transitline->transit->id}", $transitline->transit->name) }}</td>
 		                    <td>
-		                    	Thing
+		                    	{{ $count }}
 		                    </td>
 		                    <td>
 		                    	@include('admin.layout.partials.transitbuttons')

@@ -18,6 +18,11 @@ class TransitLine extends \Eloquent {
         return $this->belongsTo('Transit');
     }
 
+    public function transitStops()
+    {
+        return $this->hasMany('TransitStop');
+    }
+    
     //Assign transit type to newly created line
     public function assignTransit($id)
     {

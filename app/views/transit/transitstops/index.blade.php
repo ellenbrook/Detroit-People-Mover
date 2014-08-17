@@ -9,7 +9,7 @@
       	<!-- Begin right side panel !-->
       	<div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Line Administration</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Stops Administration</h3>
             </div>
         <div class="panel-body">
 					<!-- Display success alert if posted -->
@@ -23,16 +23,16 @@
 		        <table class="table table-bordered table-striped">
 		            <thead>
 		                <tr>
-		                    <th class="col-sm-4">Transit Line</th>
-		                    <th class="col-sm-4">Stops</th>
+		                    <th class="col-sm-4">Transit Stop</th>
+		                    <th class="col-sm-4">Line</th>
 		                    <th class="col-sm-4">Options</th>
 		                </tr>
 		            </thead>
 		 
 		            <tbody>
-		                @foreach ($transits as $transit)
+		                @foreach ($transitstops as $transitstop)
 		                <tr>
-		                    <td>{{ link_to("admin/transit/{$transit->id}", $transit->name) }}</td>
+		                    <td>{{ link_to("admin/transitstop/{$transit->id}", $transitstop->name) }}</td>
 		                    <td>
 		                    	Thing
 		                    </td>
@@ -43,7 +43,24 @@
 		                @endforeach
 		            </tbody>
 		        </table>
-		        {{ link_to_route('admin.transit.create', 'Add Transit Line', null, ['class' => 'btn btn-success']) }}
+		        <div class="add-form">
+				{{ Form::open(['role' => 'form', 'route' => 'admin.transitstop.store']) }}
+				    <div class='form-group'>
+				        {{ Form::label('transit_id', 'Stop for line') }}
+				       
+				    </div>
+				    <div class='form-group'>
+				        {{ Form::label('name', 'Stop Name') }}
+				        {{ Form::text('name', null, ['placeholder' => 'e.g., "Fort / Cass" or "Grand Circus Park"', 'class' => 'form-control']) }}
+				    </div>
+				    <div class='form-group'>
+				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}
+				    </div>
+				{{ Form::close() }}
+				</div>
+
+		        <a href="#" class="btn btn-success show-add-form">Add Transit Stop</a>
+		        <a href="#" class="btn pull-right hide-add-form">hide</a>
 		        <!-- End Right Side Panel !-->
 		</div>
 		</div> <!-- end panel wrapper -->
