@@ -50,12 +50,12 @@
 				        {{ Form::text('name', null, ['placeholder' => 'e.g., "Monorail" or "High Speed Bus"', 'class' => 'form-control']) }}
 				    </div>
 				    <div class='form-group'>
-				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}
+				        {{ Form::submit('Add Transit Type', ['class' => 'btn btn-primary']) }}
 				    </div>
 				    {{ Form::close() }}
 				</div>
 
-		        <a href="#" class="btn btn-success show-add-form">Add Transit Line</a>
+		        <a href="#" class="btn btn-success show-add-form">Add Transit Type</a>
 		        <a href="#" class="btn pull-right hide-add-form">hide</a>
 		        <!-- End Right Side Panel !-->
 		</div>

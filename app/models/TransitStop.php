@@ -26,4 +26,9 @@ class TransitStop extends \Eloquent {
     public function assignTransitLine($line_id) {
         return $this->transitLine()->attach($line_id);
     }
+
+    public static function validationRules() 
+    {
+        return $rules = ['name' => 'required', 'line_id' => 'required']; 
+    }
 }

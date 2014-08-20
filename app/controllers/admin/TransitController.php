@@ -41,13 +41,15 @@ class TransitController extends \BaseController {
 	{
 		$input = Input::all();
 
-		if (! $this->transit->fill($input)->isValid()) 
+		$transit = new Transit;
+
+		if (! $transit->fill($input)->isValid()) 
 		{ 
-			return Redirect::back()->withInput()->withErrors($this->transit->errors);
+			return Redirect::back()->withInput()->withErrors($transit->errors);
 		}
 
 		//if the transit input is valid then save it
-		$this->transit->save();
+		$transit->save();
 
         return Redirect::to('admin/transit')->with('flash_message', 'Transit line added to the database!');
 	}
@@ -61,11 +63,27 @@ class TransitController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$transitline = Transit::with('TransitLine')->findOrFail($id);
-		//select the transit line and pull in the information (find or fail?)
-		$count = TransitLine::where('transit_id', '=', $id)->count();
+		$transit = Transit::with('transitLine')->findOrFail($id);
+		
+		$transitLines = $transit->transitLine;
 
-		return View::make('transit.show', ['transitline' => $transitline, 'count' => $count]);
+		$count = 0;
+		$transitLineNameArray = [];
+		foreach($transitLines as $transitLine) {
+            $transitLineNameArray[$count] = $transitLine->name;
+            $count++;
+        }	
+
+        $transitLineNames = implode(', ',$transitLineNameArray);
+  		
+        if(empty($transitLineNames)) {
+        	$transitLineNames = "None";
+        }
+
+		return View::make('transit.show', [
+			'transit' => $transit, 
+			'transitLineNames' => $transitLineNames
+		]);
 	}
 
 
@@ -77,7 +95,7 @@ class TransitController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$transit = $this->transit->findOrFail($id);
+		$transit = Transit::findOrFail($id);
         return View::make('transit.edit', ['transit' => $transit]);
 	}
 
@@ -90,7 +108,7 @@ class TransitController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$transit = $this->transit->findOrFail($id);
+		$transit = Transit::findOrFail($id);
 		$transit->fill(Input::all());
 		$transit->save();
 

@@ -22,7 +22,7 @@
 		    {{ Form::model($transitline, ['method'=>'PATCH', 'route' => ['admin.transitline.update', $transitline->id]]) }}
 		    <div class='form-group'>
 		        {{ Form::label('transit_id', 'Type of Transit Line') }}
-		        {{ Form::select('transit_id', $types, '', ['class' => 'form-control']) }}
+		        {{ Form::select('transit_id', $types, $transitline->transit->id, ['class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>
 		        {{ Form::label('name', 'Transit Line Name') }}

@@ -6,11 +6,6 @@ class TransitLine extends \Eloquent {
 
 	protected $fillable = ['transit_id','name'];
 
-	public static $rules = [
-            'name' => 'required'
-    ];
-
-    public $errors;
 
     //Set relationship between transit line and transit
     public function transit()
@@ -30,18 +25,13 @@ class TransitLine extends \Eloquent {
     }
 
     //select all of the lines
-    public function getTypesOfTransit() {
+    public static function getTypesOfTransit() {
         $types = DB::table('transit')->get();
         return $types;
     }
 
-    public function isValid()
+    public static function validationRules()
     {
-        $validation = Validator::make($this->attributes, static::$rules);
-
-        if ($validation->passes()) return true;
-
-        $this->errors = $validation->messages();
-        return false;
+        return $rules = ['name' => 'required', 'transit_id' => 'required'];   
     }
 }

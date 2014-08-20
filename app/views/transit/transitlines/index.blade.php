@@ -47,11 +47,12 @@
 				{{ Form::open(['role' => 'form', 'route' => 'admin.transitline.store']) }}
 				    <div class='form-group'>
 				        {{ Form::label('transit_id', 'Type of Transit Line') }}
-				        <!-- Form::select('transit_id', $types, '', ['class' => 'form-control']) }} !-->
+				        {{Form::select('transit_id', $types, '', ['class' => 'form-control']) }} 
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::label('name', 'Transit Line Name') }}
 				        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
+				       	{{ $errors->first('name') }}
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}

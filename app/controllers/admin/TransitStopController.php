@@ -16,15 +16,13 @@ class TransitStopController extends \BaseController {
 	{
 		$transitstops = TransitStop::with('attraction', 'transitLine')->get();
 
-		//get all user transit lines to populate the select menu
-		$typesdata = TransitLine::get();
-		//loop through and assign a key value pair
-		foreach ($typesdata as $key => $value)
-		{
-			$types[$value->id] = $value->name;
-		}
+		//get list of all transits to populate table
+		$typesOfTransitLines = TransitLine::remember(10)->lists('name', 'id');
 
-		return View::make('transit.transitstops.index', ['transitstops' => $transitstops, 'types' => $types]);
+		return View::make('transit.transitstops.index', [
+			'transitstops' => $transitstops, 
+			'typesOfTransitLines' => $typesOfTransitLines
+		]);
 	}
 
 
@@ -47,15 +45,25 @@ class TransitStopController extends \BaseController {
 	 */
 	public function store()
 	{
+		//set the validation rules and input
+		$rules = TransitStop::validationRules();
 		$input = Input::all();
 
+		//create a new validator
+		$validation = Validator::make($input, $rules);
+		
+		if ($validation->fails()) 
+		{ 
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+
 		$transitStop = new TransitStop;
-		$transitStop->name = $input['name'];
+		$transitStop->name = Input::get('name');
 
 		//save transitStop
 		$transitStop->save();
 
-		$transitStop->assignTransitLine($input['line_id']);
+		$transitStop->assignTransitLine(Input::get('line_id'));
 		return Redirect::to('admin/transitstop')->with('flash_message', 'Stop has been added to database.');
 	}
 
@@ -81,8 +89,11 @@ class TransitStopController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$transitStop = TransitStop::findOrFail($id);
-		return "editing ".$transitStop->name;;
+		$transitStop = TransitStop::find($id);
+		//get list of all attractions to populate table
+		$types = TransitLine::lists('name', 'id');
+
+        return View::make('transit.transitstops.edit', ['transitStop' => $transitStop, 'types' => $types]);
 	}
 
 
@@ -95,7 +106,9 @@ class TransitStopController extends \BaseController {
 	public function update($id)
 	{
 		$transitStop = TransitStop::findOrFail($id);
-		return "updating ".$transitStop->name;;
+		$transitStop->fill(Input::all());
+		$transitStop->save();
+		return Redirect::to('admin/transitstop')->with('flash_message', 'Transit stop has been updated!');
 	}
 
 

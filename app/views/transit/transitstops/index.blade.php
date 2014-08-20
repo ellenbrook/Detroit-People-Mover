@@ -39,7 +39,7 @@
 		                    	{{ $transitstop->attraction->count() }}
 		                    </td>
 		                     <td>
-		                     	{{ $transitstop->transitLine->count() }} lines.
+		                     	{{ $transitstop->transitLine->first()->name }}
 		                     </td>
 		                    <td>
 		                    	@include('admin.layout.partials.transitstopbuttons')
@@ -52,14 +52,15 @@
 				{{ Form::open(['role' => 'form', 'route' => 'admin.transitstop.store']) }}
 				    <div class='form-group'>
 				        {{ Form::label('line_id', 'Stop for line') }}
-				         {{ Form::select('line_id', $types, '', ['class' => 'form-control']) }}
+				         {{ Form::select('line_id', $typesOfTransitLines, $transitstop->transitLine->first()->name, ['class' => 'form-control']) }}
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::label('name', 'Stop Name') }}
 				        {{ Form::text('name', null, ['placeholder' => 'e.g., "Fort / Cass" or "Grand Circus Park"', 'class' => 'form-control']) }}
+				        {{ $errors->first('name') }}
 				    </div>
 				    <div class='form-group'>
-				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}
+				        {{ Form::submit('Add Transit Stop', ['class' => 'btn btn-primary']) }}
 				    </div>
 				{{ Form::close() }}
 				</div>

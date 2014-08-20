@@ -8,7 +8,7 @@
       <div class="col-md-9">
       	<div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Add Transit Line</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Edit Transit Stop</h3>
             </div>
         <div class="panel-body">
       	<!-- Begin right side panel !-->
@@ -19,9 +19,13 @@
 			        @endforeach
 			    @endif
 			<!-- End checking -->		 
-		    {{ Form::model($transit, ['method'=>'PATCH', 'route' => ['admin.transit.update', $transit->id]]) }}
+		    {{ Form::model($transitStop, ['method'=>'PATCH', 'route' => ['admin.transitstop.update', $transitStop->id]]) }}
 		    <div class='form-group'>
-		        {{ Form::label('name', 'Transit Line Name') }}
+		        {{ Form::label('transit_line_id', 'Belongs to') }}
+		        {{ Form::select('transit_line_id', $types, $transitStop->transitLine->first()->id, ['class' => 'form-control']) }}
+		    </div>
+		    <div class='form-group'>
+		        {{ Form::label('name', 'Transit Stop Name') }}
 		        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
 		    </div>
 		    <div class='form-group'>

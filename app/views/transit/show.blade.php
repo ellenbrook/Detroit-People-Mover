@@ -8,7 +8,7 @@
       <div class="col-md-9">
 	    <div class="panel panel-info">
             <div class="nav-header">
-              <h3 class="panel-title">{{ $transitline->name }}</h3>
+              <h3 class="panel-title">{{ $transit->name }}</h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -20,19 +20,17 @@
                     <tbody>
                       <tr>
                         <th>Transit Line Created:</th>
-                        <td>{{ $transitline->created_at }}</td>
+                        <td>{{ $transit->created_at }}</td>
                       </tr>
                       <tr>
                         <th>Transit Line Updated</th>
-                        <td>{{ $transitline->updated_at }}</td>
+                        <td>{{ $transit->updated_at }}</td>
                       </tr>
                       <tr>
-                        <th>Stops</th>
-                        <td>{{ $count }}</td>
-                      </tr>
-                      <tr>
-                        <th>Attractions Near By</th>
-                        <td>NUMBER OF ATTRACTIONS</td>
+                        <th>Lines</th>
+                        <td>
+                          {{ $transitLineNames }}
+                        </td>
                       </tr>
                      <tr>
                      	<th></th>

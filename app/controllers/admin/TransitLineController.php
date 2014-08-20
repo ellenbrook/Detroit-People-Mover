@@ -15,9 +15,17 @@ class TransitLineController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitlines = TransitLine::with('transitStops')->get();
+		$transitLines = TransitLine::with('transitStops')->get(); //get all transit lines
 
-		return View::make('transit.transitlines.index', ['transitlines' => $transitlines]);
+		//get list of all transits to populate table
+		$types = Transit::lists('name', 'id');
+
+		//loop through each transit and assign to an array
+
+		return View::make('transit.transitlines.index', [
+			'transitlines' => $transitLines,
+			'types' => $types
+			]);
 
 	}
 
@@ -29,16 +37,11 @@ class TransitLineController extends \BaseController {
 	 */
 	public function create()
 	{
-		//get all user roles to populate the select menu
-		$typesdata = $this->transitline->getTypesOfTransit();
 
-		//loop through and assign a key value pair
-		foreach ($typesdata as $key => $value)
-		{
-			$types[$value->id] = $value->name;
-		}
+		//get list of all transits to populate table
+		$types = Transit::lists('name', 'id');
 
-		return View::make('transit.transitlines.create')->with('types', $types);
+		return View::make('transit.transitlines.create', ['types' => $types]);
 	}
 
 
@@ -49,18 +52,24 @@ class TransitLineController extends \BaseController {
 	 */
 	public function store()
 	{
+		//set the validation rules and input
+		$rules = TransitLine::validationRules();
 		$input = Input::all();
 
-		if (! $this->transitline->fill($input)->isValid()) 
-		{ 
-			return Redirect::back()->withInput()->withErrors($this->transitline->errors);
-		}
+		//create a new validator
+		$validation = Validator::make($input, $rules);
 		
-		//if the transit input is valid then save it
-		$this->transitline->save();
+		if ($validation->fails()) 
+		{ 
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
 
-		//Assign the type of line to it
-		//$this->transitline->assignTransit(Input::get('transit_id'));
+		$transitLine = new TransitLine;
+		$transitLine->name = Input::get('name');
+		$transitLine->transit_id = Input::get('transit_id');
+
+		//if the transit input is valid then save it
+		$transitLine->save();
 
         return Redirect::to('admin/transitline')->with('flash_message', 'Transit line added to the database!');
 	}
@@ -74,9 +83,9 @@ class TransitLineController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$transit = $this->transitline->findOrFail($id); //easier method to showing transit
+		$transitline = TransitLine::with('transitStops')->findOrFail($id); //easier method to showing transit
 
-		return View::make('transit.transitlines.show', ['transit' => $transit]);
+		return View::make('transit.transitlines.show', ['transitline' => $transitline]);
 	}
 
 
@@ -88,18 +97,11 @@ class TransitLineController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$transitline = $this->transitline->findOrFail($id);
+		$transitLine = TransitLine::find($id);
+		//get list of all transits to populate table
+		$types = $transitLine->transit->lists('name', 'id');
 
-		//get all user roles to populate the select menu
-		$typesdata = $this->transitline->getTypesOfTransit();
-
-		//loop through and assign a key value pair
-		foreach ($typesdata as $key => $value)
-		{
-			$types[$value->id] = $value->name;
-		}
-
-        return View::make('transit.transitlines.edit', ['transitline' => $transitline, 'types' => $types]);
+        return View::make('transit.transitlines.edit', ['transitline' => $transitLine, 'types' => $types]);
 	}
 
 
@@ -111,7 +113,8 @@ class TransitLineController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$transit = $this->transitline->findOrFail($id);
+		$transit = TransitLine::findOrFail($id);
+
 		$transit->fill(Input::all());
 		$transit->save();
 
