@@ -23,8 +23,9 @@
 		        <table class="table table-bordered table-striped">
 		            <thead>
 		                <tr>
-		                    <th class="col-sm-4">Transit Stop</th>
-		                    <th class="col-sm-4">Line</th>
+		                    <th class="col-sm-3">Transit Stop</th>
+		                    <th class="col-sm-1">Attractions</th>
+		                    <th class="col-sm-3">Belongs to</th>
 		                    <th class="col-sm-4">Options</th>
 		                </tr>
 		            </thead>
@@ -35,8 +36,11 @@
 		                    <td>
 		                    	{{ link_to("admin/transitstop/{$transitstop->id}", $transitstop->name) }}
 		                    <td>
-		                    	Thing
+		                    	{{ $transitstop->attraction->count() }}
 		                    </td>
+		                     <td>
+		                     	{{ $transitstop->transitLine->count() }} lines.
+		                     </td>
 		                    <td>
 		                    	@include('admin.layout.partials.transitstopbuttons')
 		                    </td>

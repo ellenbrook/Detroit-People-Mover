@@ -6,7 +6,7 @@ class TransitLineController extends \BaseController {
 
 	public function __construct()
     {
-
+    	 $this->beforeFilter('role:Owner', array('except' => array('doLogin')));
     }
 	/**
 	 * Display a listing of the resource.

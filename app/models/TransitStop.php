@@ -10,12 +10,12 @@ class TransitStop extends \Eloquent {
     public $errors;
 
     //This belongs to many transit lines
-	public function line() {
-        return $this->belongsToMany('TransitLine');
+	public function transitLine() {
+        return $this->belongsToMany('TransitLine')->withTimestamps();
     }
     //This has many attractions
-    public function attractions() {
-        return $this->hasMany('Attractions');
+    public function attraction() {
+        return $this->hasMany('Attraction');
     }
     //get all transit lines
     public function getTransitLines() {
@@ -24,6 +24,6 @@ class TransitStop extends \Eloquent {
     }
     //set transit line
     public function assignTransitLine($line_id) {
-        return $this->line()->attach($line_id)->withTimeStamps();
+        return $this->transitLine()->attach($line_id);
     }
 }

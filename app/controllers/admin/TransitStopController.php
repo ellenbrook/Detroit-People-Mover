@@ -5,6 +5,7 @@ class TransitStopController extends \BaseController {
 
 	public function __construct()
     {
+    	 $this->beforeFilter('role:Owner', array('except' => array('doLogin')));
     }
 	/**
 	 * Display a listing of the resource.
@@ -13,10 +14,10 @@ class TransitStopController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitstops = TransitStop::get();
+		$transitstops = TransitStop::with('attraction', 'transitLine')->get();
+
 		//get all user transit lines to populate the select menu
 		$typesdata = TransitLine::get();
-
 		//loop through and assign a key value pair
 		foreach ($typesdata as $key => $value)
 		{
@@ -106,8 +107,8 @@ class TransitStopController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$transitStop = TransitStop::findOrFail($id);
-		return "destroying ".$transitStop->name;;
+		TransitStop::destroy($id);
+		return Redirect::to('admin/transitstop')->with('flash_message', 'Item has been removed.');
 	}
 
 
