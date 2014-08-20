@@ -4,10 +4,9 @@ class TransitLineController extends \BaseController {
 	
 	protected $transitline;
 
-	public function __construct(TransitLine $transitline)
+	public function __construct()
     {
-        $this->beforeFilter('role:Owner');
-        $this->transitline = $transitline;
+
     }
 	/**
 	 * Display a listing of the resource.
@@ -16,18 +15,9 @@ class TransitLineController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitlines = $this->transitline->get();
+		$transitlines = TransitLine::with('transitStops')->get();
 
-		//get all user transit lines to populate the select menu
-		$typesdata = $this->transitline->getTypesOfTransit();
-
-		//loop through and assign a key value pair
-		foreach ($typesdata as $key => $value)
-		{
-			$types[$value->id] = $value->name;
-		}
-
-		return View::make('transit.transitlines.index', ['transitlines' => $transitlines])->with('types', $types);
+		return View::make('transit.transitlines.index', ['transitlines' => $transitlines]);
 
 	}
 

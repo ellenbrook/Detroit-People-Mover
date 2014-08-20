@@ -32,12 +32,13 @@
 		            <tbody>
 		                @foreach ($transitstops as $transitstop)
 		                <tr>
-		                    <td>{{ link_to("admin/transitstop/{$transit->id}", $transitstop->name) }}</td>
+		                    <td>
+		                    	{{ link_to("admin/transitstop/{$transitstop->id}", $transitstop->name) }}
 		                    <td>
 		                    	Thing
 		                    </td>
 		                    <td>
-		                    	@include('admin.layout.partials.transitbuttons')
+		                    	@include('admin.layout.partials.transitstopbuttons')
 		                    </td>
 		                </tr>
 		                @endforeach
@@ -46,8 +47,8 @@
 		        <div class="add-form">
 				{{ Form::open(['role' => 'form', 'route' => 'admin.transitstop.store']) }}
 				    <div class='form-group'>
-				        {{ Form::label('transit_id', 'Stop for line') }}
-				       
+				        {{ Form::label('line_id', 'Stop for line') }}
+				         {{ Form::select('line_id', $types, '', ['class' => 'form-control']) }}
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::label('name', 'Stop Name') }}

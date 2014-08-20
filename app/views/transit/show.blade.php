@@ -28,7 +28,7 @@
                       </tr>
                       <tr>
                         <th>Stops</th>
-                        <td>NUMBER OF STOPS</td>
+                        <td>{{ $count }}</td>
                       </tr>
                       <tr>
                         <th>Attractions Near By</th>

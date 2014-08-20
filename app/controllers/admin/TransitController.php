@@ -3,10 +3,9 @@
 class TransitController extends \BaseController {
 	protected $transit;
 
-	public function __construct(Transit $transit)
+	public function __construct()
     {
-        $this->beforeFilter('role:Owner');
-        $this->transit = $transit;
+
     }
 	/**
 	 * Display a listing of the resource.
@@ -15,13 +14,9 @@ class TransitController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitlines = TransitLine::with('transit')->get();
+		$transits = Transit::with('transitLine')->get();
 
-		foreach ($transitlines as $transitline) {
-			$count = TransitLine::where('transit_id', $transitline->transit->id)->count(); //loop and count the lines
-		}
-
-		return View::make('transit.index', ['transitlines' => $transitlines, 'count' => $count]);
+		return View::make('transit.index', ['transit' => $transits]);
 
 	}
 
@@ -66,9 +61,11 @@ class TransitController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		$transitline = Transit::with('TransitLine')->findOrFail($id);
 		//select the transit line and pull in the information (find or fail?)
+		$count = TransitLine::where('transit_id', '=', $id)->count();
 
-		return View::make('transit.show', ['transitline' => $transitline]);
+		return View::make('transit.show', ['transitline' => $transitline, 'count' => $count]);
 	}
 
 

@@ -12,15 +12,15 @@ class CreateLineStopTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('line_stop', function(Blueprint $table)
+		Schema::create('transit_line_transit_stop', function(Blueprint $table)
 		{
 			$table->increments('id');
 
-			$table->integer('line_id')->unsigned()->index();
-			$table->foreign('line_id')->references('id')->on('transit_lines')->onDelete('cascade');
+			$table->integer('transit_line_id')->unsigned()->index();
+			$table->foreign('transit_line_id')->references('id')->on('transit_lines')->onDelete('cascade');
 
-			$table->integer('stop_id')->unsigned()->index();
-			$table->foreign('stop_id')->references('id')->on('transit_stops')->onDelete('cascade');
+			$table->integer('transit_stop_id')->unsigned()->index();
+			$table->foreign('transit_stop_id')->references('id')->on('transit_stops')->onDelete('cascade');
 			
 			$table->timestamps();
 		});
@@ -34,7 +34,7 @@ class CreateLineStopTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('line_stop');
+		Schema::drop('transit_line_transit_stop');
 	}
 
 }

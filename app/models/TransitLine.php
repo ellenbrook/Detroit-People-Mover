@@ -20,7 +20,7 @@ class TransitLine extends \Eloquent {
 
     public function transitStops()
     {
-        return $this->hasMany('TransitStop');
+        return $this->belongsToMany('TransitStop');
     }
     
     //Assign transit type to newly created line

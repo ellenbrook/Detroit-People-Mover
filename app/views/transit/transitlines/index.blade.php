@@ -47,7 +47,7 @@
 				{{ Form::open(['role' => 'form', 'route' => 'admin.transitline.store']) }}
 				    <div class='form-group'>
 				        {{ Form::label('transit_id', 'Type of Transit Line') }}
-				        {{ Form::select('transit_id', $types, '', ['class' => 'form-control']) }}
+				        <!-- Form::select('transit_id', $types, '', ['class' => 'form-control']) }} !-->
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::label('name', 'Transit Line Name') }}

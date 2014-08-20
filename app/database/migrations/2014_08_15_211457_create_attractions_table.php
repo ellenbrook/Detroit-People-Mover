@@ -16,8 +16,8 @@ class CreateAttractionsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('line_stop_id')->unsigned()->index();
-			$table->foreign('line_stop_id')->references('id')->on('line_stop')->onDelete('cascade');
+			$table->integer('transit_stop_id')->unsigned()->index();
+			$table->foreign('transit_stop_id')->references('id')->on('transit_stops')->onDelete('cascade');
 			
 			$table->string('name');
 			$table->unique('name');

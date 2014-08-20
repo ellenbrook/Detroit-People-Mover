@@ -3,10 +3,8 @@
 class TransitStopController extends \BaseController {
 	protected $transitstop;
 
-	public function __construct(TransitStop $transitstop)
+	public function __construct()
     {
-        $this->beforeFilter('role:Owner');
-        $this->transitstop = $transitstop;
     }
 	/**
 	 * Display a listing of the resource.
@@ -15,13 +13,17 @@ class TransitStopController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitstops = $this->transitstop->get(); //Get all stops
+		$transitstops = TransitStop::get();
+		//get all user transit lines to populate the select menu
+		$typesdata = TransitLine::get();
 
-		//perform query to get all lines
+		//loop through and assign a key value pair
+		foreach ($typesdata as $key => $value)
+		{
+			$types[$value->id] = $value->name;
+		}
 
-		//loop through and assign to array
-
-		return View::make('transit.transitstops.index', ['transitstops' => $transitstops]);
+		return View::make('transit.transitstops.index', ['transitstops' => $transitstops, 'types' => $types]);
 	}
 
 
@@ -44,7 +46,16 @@ class TransitStopController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+
+		$transitStop = new TransitStop;
+		$transitStop->name = $input['name'];
+
+		//save transitStop
+		$transitStop->save();
+
+		$transitStop->assignTransitLine($input['line_id']);
+		return Redirect::to('admin/transitstop')->with('flash_message', 'Stop has been added to database.');
 	}
 
 
@@ -56,7 +67,8 @@ class TransitStopController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return "showing 1";
+		$transitStop = TransitStop::findOrFail($id);
+		return "showing ".$transitStop->name;
 	}
 
 
@@ -68,7 +80,8 @@ class TransitStopController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return "editing 1";
+		$transitStop = TransitStop::findOrFail($id);
+		return "editing ".$transitStop->name;;
 	}
 
 
@@ -80,7 +93,8 @@ class TransitStopController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$transitStop = TransitStop::findOrFail($id);
+		return "updating ".$transitStop->name;;
 	}
 
 
@@ -92,7 +106,8 @@ class TransitStopController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		return "destroying 1";
+		$transitStop = TransitStop::findOrFail($id);
+		return "destroying ".$transitStop->name;;
 	}
 
 
