@@ -15,7 +15,7 @@ class TransitLineController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitLines = TransitLine::get(); //get all transit lines
+		$transitLines = TransitLine::with('transitStops')->get(); //get all transit lines
 
 		//get list of all transits to populate table
 		$types = Transit::lists('name', 'id');
@@ -83,7 +83,7 @@ class TransitLineController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$transitline = TransitLine::findOrFail($id); //easier method to showing transit
+		$transitline = TransitLine::with('transitStops')->findOrFail($id); //easier method to showing transit
 
 		return View::make('transit.transitlines.show', ['transitline' => $transitline]);
 	}

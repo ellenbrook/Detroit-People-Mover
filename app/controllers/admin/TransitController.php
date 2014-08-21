@@ -63,7 +63,7 @@ class TransitController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$transit = Transit::findOrFail($id);
+		$transit = Transit::with('transitLine')->findOrFail($id);
 		
 		$transitLines = $transit->transitLine;
 
