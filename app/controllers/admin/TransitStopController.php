@@ -14,7 +14,7 @@ class TransitStopController extends \BaseController {
 	 */
 	public function index()
 	{
-		$transitstops = TransitStop::with('attraction', 'transitLine')->get();
+		$transitstops = TransitStop::with('transitLine')->get();
 
 		//get list of all transits to populate table
 		$typesOfTransitLines = TransitLine::remember(10)->lists('name', 'id');
