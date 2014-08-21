@@ -12,13 +12,6 @@
             </div>
         <div class="panel-body">
 	      	<!-- Begin right side panel !-->
-		      	<!-- Success and error checking -->
-				    @if ($errors->has())
-				        @foreach ($errors->all() as $error)
-				            <div class='bg-danger alert'>{{ $error }}</div>
-				        @endforeach
-				    @endif
-				<!-- End checking -->
 		    {{ Form::model($user, ['method'=>'PATCH', 'route' => ['admin.user.update', $user->id]]) }}
 		    <div class='form-group'>
 		        {{ Form::label('username', 'First Name') }}

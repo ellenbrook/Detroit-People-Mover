@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder {
         User::create(array(
             'username' => 'Chris', 
             'email' => 'elkjar@20thcen.com',
-            'password' => '$2a$08$vWkMS9cJe/aV/v9wpzxWke1hm1gfNXWyiqzr.fl9l2.kqRJdjaeX6',
+            'password' => '$2y$10$urowhPgJIL0VASlij3WLVuhsvzE1OPet20/LulGBaKnfdFQQ43KGO',
             'area_code' => '313',
             'phone_number' => '5555555',
             'business_name' => '20th Century Design Co.' 

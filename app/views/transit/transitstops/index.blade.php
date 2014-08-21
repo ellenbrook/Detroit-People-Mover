@@ -28,6 +28,7 @@
 		                <tr>
 		                    <td>
 		                    	{{ link_to("admin/transitstop/{$transitstop->id}", $transitstop->name) }}
+		                    </td>
 		                    <td>
 		                    	{{ $transitstop->attraction->count() }}
 		                    </td>
