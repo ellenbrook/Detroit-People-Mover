@@ -91,8 +91,13 @@ Route::filter('csrf', function()
 
 Route::filter('role', function($route, $request, $role)
 {
-	if (Auth::guest() || ! Auth::user()->hasRole($role))
+	if (Auth::guest())
 	{
 		return Redirect::to('/admin/login');
+	}
+
+	if(! Auth::user()->hasRole($role))
+	{
+		return Response::make('Unauthorized', 401);
 	}
 });
