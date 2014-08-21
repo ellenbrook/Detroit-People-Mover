@@ -11,7 +11,7 @@
   <span class="nav-header active">
     Attraction Options
   </span>
-  <a href="#" class="list-group-item">All Attractions</a>
+  {{ HTML::linkAction('AttractionController@index', 'Attraction', '' , array('class' => 'list-group-item')) }}
   <a href="#" class="list-group-item">Add Tags</a>
   <a href="#" class="list-group-item">All Tags</a>
 </div>

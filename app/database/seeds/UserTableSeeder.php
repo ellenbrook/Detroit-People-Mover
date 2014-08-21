@@ -14,5 +14,14 @@ class UserTableSeeder extends Seeder {
         	'phone_number' => '7198120',
         	'business_name' => 'Detroit People Mover' 
         ));
+
+        User::create(array(
+            'username' => 'Chris', 
+            'email' => 'elkjar@20thcen.com',
+            'password' => '$2a$08$vWkMS9cJe/aV/v9wpzxWke1hm1gfNXWyiqzr.fl9l2.kqRJdjaeX6',
+            'area_code' => '313',
+            'phone_number' => '5555555',
+            'business_name' => '20th Century Design Co.' 
+        ));
     }
 }

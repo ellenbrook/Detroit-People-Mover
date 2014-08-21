@@ -7,5 +7,6 @@ class TransitTableSeeder extends Seeder {
         DB::table('transit')->delete();
 
         Transit::create(array('name' => 'Monorail'));
+        Transit::create(array('name' => 'Bus'));
     }
 }

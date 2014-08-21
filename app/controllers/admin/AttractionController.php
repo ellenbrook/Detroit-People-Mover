@@ -10,7 +10,9 @@ class AttractionController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$attractions = Attraction::with('transitStop', 'transitStop.transitLine')->get();
+
+		return View::make('attraction.index', ['attractions' => $attractions]);
 	}
 
 	/**
@@ -44,7 +46,8 @@ class AttractionController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$attraction = Attraction::with('transitStop', 'transitStop.transitLine')->find($id);
+		return View::make('attraction.show', ['attraction' => $attraction]);
 	}
 
 	/**
