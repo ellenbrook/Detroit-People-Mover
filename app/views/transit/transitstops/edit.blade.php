@@ -11,14 +11,7 @@
               <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Edit Transit Stop</h3>
             </div>
         <div class="panel-body">
-      	<!-- Begin right side panel !-->
-	      	<!-- Success and error checking -->
-			    @if ($errors->has())
-			        @foreach ($errors->all() as $error)
-			            <div class='bg-danger alert'>{{ $error }}</div>
-			        @endforeach
-			    @endif
-			<!-- End checking -->		 
+      	<!-- Begin right side panel !-->		 
 		    {{ Form::model($transitStop, ['method'=>'PATCH', 'route' => ['admin.transitstop.update', $transitStop->id]]) }}
 		    <div class='form-group'>
 		        {{ Form::label('transit_line_id', 'Belongs to') }}

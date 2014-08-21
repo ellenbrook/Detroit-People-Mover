@@ -12,13 +12,6 @@
               <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Type Administration</h3>
             </div>
         <div class="panel-body">
-					<!-- Display success alert if posted -->
-	      			@if(Session::get('flash_message'))
-						<div class="alert alert-success" role="alert">
-							{{ Session::get('flash_message') }}
-						</div>
-					@endif
-					<!-- End success display -->
 			    <div class="table-responsive">
 		        <table class="table table-bordered table-striped">
 		            <thead>

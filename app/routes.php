@@ -1,8 +1,9 @@
 <?php
 
-Event::listen('illuminate.query', function($query){
-	var_dump($query);
-});
+// Event::listen('illuminate.query', function($query){
+// 	var_dump($query);
+// });
+
 /****************************
  * Protect against cross-site 
  * scripts for the 
@@ -38,6 +39,11 @@ Route::group(['prefix' => 'admin'], function() {
 	**      Transit Stops     **
 	*****************************/
 	Route::resource('transitstop', 'TransitStopController');
+
+	/****************************
+	**       Attractions       **
+	*****************************/
+	Route::resource('attraction', 'AttractionController');
 });
 
 /****************************

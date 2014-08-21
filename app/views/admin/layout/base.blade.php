@@ -8,22 +8,39 @@
 </head>
 <body>
   @include('admin.layout.partials.nav')
-
 <div class="container">
 
   @yield('content')
 
 </div> <!--container!-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+  @include('admin.layout.partials.messages')
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-  //success message
-	$(".alert-success").delay( 900 ).fadeOut( 1000, function(){
+  //Message display
+	$(".alert").delay( 2000 ).fadeOut( 1000, function(){
 		$(this).fadeOut(500, function(){
-			$(this).css({"visibility":"hidden", display:'block'}).slideUp();
+			$(this).hide();
 		});
 	});
+
+  //Ask for delete confirmation
+  $('input[data-toggle], button[data-toggle').click(function(e){
+      var input = $(this);  
+      var form = input.closest('form');
+
+      input.prop('disabled', 'disabled');
+
+      e.preventDefault();
+        $('#confirmDelete').click(function(){
+          $(form).unbind('submit').submit();
+
+        });
+
+      input.removeAttr('disabled');
+  });
+
 
   //Show/hide Add Form
   $(".show-add-form").click(function(){

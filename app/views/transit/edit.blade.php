@@ -11,14 +11,7 @@
               <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Add Transit Line</h3>
             </div>
         <div class="panel-body">
-      	<!-- Begin right side panel !-->
-	      	<!-- Success and error checking -->
-			    @if ($errors->has())
-			        @foreach ($errors->all() as $error)
-			            <div class='bg-danger alert'>{{ $error }}</div>
-			        @endforeach
-			    @endif
-			<!-- End checking -->		 
+      	<!-- Begin right side panel !-->	 
 		    {{ Form::model($transit, ['method'=>'PATCH', 'route' => ['admin.transit.update', $transit->id]]) }}
 		    <div class='form-group'>
 		        {{ Form::label('name', 'Transit Line Name') }}

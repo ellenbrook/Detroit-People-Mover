@@ -12,13 +12,6 @@
               <h3 class="panel-title"><span class="glyphicon glyphicon-road"></span> Transit Line Administration</h3>
             </div>
         <div class="panel-body">
-					<!-- Display success alert if posted -->
-	      			@if(Session::get('flash_message'))
-						<div class="alert alert-success" role="alert">
-							{{ Session::get('flash_message') }}
-						</div>
-					@endif
-					<!-- End success display -->
 			    <div class="table-responsive">
 		        <table class="table table-bordered table-striped">
 		            <thead>
@@ -52,7 +45,6 @@
 				    <div class='form-group'>
 				        {{ Form::label('name', 'Transit Line Name') }}
 				        {{ Form::text('name', null, ['placeholder' => 'e.g., "People Mover" or "M-1 Rail"', 'class' => 'form-control']) }}
-				       	{{ $errors->first('name') }}
 				    </div>
 				    <div class='form-group'>
 				        {{ Form::submit('Add Transit Line', ['class' => 'btn btn-primary']) }}

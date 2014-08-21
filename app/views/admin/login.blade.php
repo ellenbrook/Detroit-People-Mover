@@ -1,11 +1,6 @@
 @extends('admin.layout.base')
 
 @section('content')
-@if(Session::get('flash_message'))
-	<div class="alert alert-danger" role="alert">
-		{{ Session::get('flash_message') }}
-	</div>
-@endif
 <div class="jumbotron">
 {{ Form::open(array('route' => 'sessions.store', 'class' => 'form-horizontal')) }}
 <div class="form-group">
