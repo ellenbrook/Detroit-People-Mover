@@ -28,9 +28,7 @@
 		                <tr>
 		                    <td>{{ link_to("admin/attraction/{$attraction->id}", $attraction->name) }}</td>
 		                    <td>
-		                    	{{ $attraction->transitStop->first()->transitLine->first()->name }} 
-		                    	/
-		                    	{{ $attraction->transitStop->first()->name }}
+		                    	{{ $attraction->transitStop->name }}
 		                    </td>
 		                    <td>
 		                    	Tags
@@ -42,17 +40,25 @@
 		                @endforeach
 		            </tbody>
 		        </table>
-		        <div class="add-form">
+		        <div class="add-form row">
 				    {{ Form::open(['role' => 'form', 'route' => 'admin.attraction.store']) }}
-				    <div class="form-group">
-				    	{{ Form::label('transitStop', 'Closest stop') }}
-				    	{{ Form::select('transitStop',['Name' => "place"],'name', ['class' => 'form-control']) }}
+				    <div class='form-group col-md-3'>
+				        {{ Form::label('address', 'Address') }}
+				        {{ Form::text('address', null, ['placeholder' => 'e.g., "722"', 'class' => 'form-control']) }}
+				    </div>
+				    <div class='form-group col-md-9'>
+				        {{ Form::label('street', 'Street') }}
+				        {{ Form::text('street', null, ['placeholder' => 'e.g., "Woodward Ave."', 'class' => 'form-control']) }}
+				    </div>
+				    <div class="form-group col-md-12">
+				    	{{ Form::label('city', 'City') }}
+				    	{{ Form::select('city',['1' => 'Detroit'],'Detroit', ['class' => 'form-control']) }}
 				   	</div>
-				    <div class='form-group'>
+				    <div class='form-group col-md-12'>
 				        {{ Form::label('name', 'Name of Attraction') }}
 				        {{ Form::text('name', null, ['placeholder' => 'e.g., "Comerica Park" or "Anchor Bar"', 'class' => 'form-control']) }}
 				    </div>
-				    <div class='form-group'>
+				    <div class='form-group  col-md-12'>
 				        {{ Form::submit('Add Attraction', ['class' => 'btn btn-primary']) }}
 				    </div>
 				    {{ Form::close() }}

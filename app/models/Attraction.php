@@ -6,7 +6,7 @@ class Attraction extends \Eloquent {
 
     protected $hidden = array('password', 'remember_token');
 
-    protected $fillable = ['transit_stop_id' ,'name'];
+    protected $fillable = ['transit_stop_id' ,'name', 'address', 'street', 'city'];
 
     public $errors;
 
