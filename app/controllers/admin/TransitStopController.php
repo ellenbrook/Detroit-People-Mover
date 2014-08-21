@@ -105,8 +105,33 @@ class TransitStopController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$transitStop = TransitStop::findOrFail($id);
-		$transitStop->fill(Input::all());
+		$rules = ['transit_line_id' => 'required', 'name' => 'required'];
+		$input = Input::all();
+
+		$transitStop = TransitStop::with('transitLine')->find($id);
+
+		$currentTransitLine = $transitStop->transitLine();
+		$currentTransitLineId = $currentTransitLine->first()->id;
+
+		//create a new validator
+		$validation = Validator::make($input, $rules);
+
+		if ($validation->fails()) 
+		{ 
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+		//If the current line and the form line are different
+		if($currentTransitLineId != $input['transit_line_id'])
+		{
+			//then do this but if it doesn't work redirect with errors
+			if(!$currentTransitLine->updateExistingPivot($currentTransitLineId, [
+				'transit_line_id' => $input['transit_line_id']
+			], true))
+			{
+				return Redirect::back()->withInput()->withErrors("Something went wrong");
+			}
+		} 
+		$transitStop->name = $input['name'];
 		$transitStop->save();
 		return Redirect::to('admin/transitstop')->with('flash_message', 'Transit stop has been updated!');
 	}
